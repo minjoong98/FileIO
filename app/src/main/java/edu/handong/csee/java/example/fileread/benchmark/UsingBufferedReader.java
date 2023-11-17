@@ -7,22 +7,26 @@ import java.io.*;
  */
 public class UsingBufferedReader {
     public static void main(String[] args) throws IOException {
+    	String fileNames;
 
+    	fileNames = args[0];
+    	
+    	switch(fileNames) {
+    	case "input1MB":
+    		 //-------------- Test reading 1 MB file. --------------------
 
-        //-------------- Test reading 1 MB file. --------------------
+            StopWatch.start();
 
-        StopWatch.start();
+            BufferedReader inputStream= new BufferedReader(new FileReader(DumpDataWriter.input1MB));
+            while (inputStream.read()!=-1){}
 
-        BufferedReader inputStream= new BufferedReader(new FileReader(DumpDataWriter.input1MB));
-        while (inputStream.read()!=-1){}
-
-        long duration = StopWatch.stop();
-        System.out.println(duration + " milsec");
-        
-        inputStream.close();
-
-
-        //-------------- Test reading 10 MB file. --------------------
+            long duration = StopWatch.stop();
+            System.out.println(duration + " milsec");
+            
+            inputStream.close();
+            break;
+    	case "input10MB":
+    	//-------------- Test reading 10 MB file. --------------------
 
         StopWatch.start();
 
@@ -33,8 +37,10 @@ public class UsingBufferedReader {
         System.out.println(duration2 + " milsec");
 
         inputStream2.close();
-
+        break;
+        
         /*
+         * case "input100MB":
         //-------------- Test reading 100 MB file. --------------------
 
         StopWatch.start();
@@ -46,7 +52,10 @@ public class UsingBufferedReader {
         System.out.println(duration3 + " milsec");
         
         inputStream3.close();
-
+        break;
+        
+		
+		case "input1000MB":
 
         //-------------- Test reading 1000 MB file. --------------------
 
@@ -60,6 +69,16 @@ public class UsingBufferedReader {
         System.out.println(duration4 + " milsec");
         
         inputStream4.close();
+        break;
         */
+        
+    		
+    	}
+       
+
+
+        
+
+        
     }
 }
